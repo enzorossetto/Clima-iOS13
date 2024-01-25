@@ -15,16 +15,17 @@ protocol WeatherManagerDelegate {
 }
 
 struct WeatherManager {
-    let weatherURL = "https://api.openweathermap.org/data/2.5/weather?units=metric&appid=API_ID"
+    let weatherURL = "https://api.openweathermap.org/data/2.5/weather?units=metric"
+    let apiKey = "YOUR_API_KEY_HERE"
     var delegate: WeatherManagerDelegate?
     
     func fetchWeather(cityName: String) {
-        let urlString = "\(weatherURL)&q=\(cityName)"
+        let urlString = "\(weatherURL)&appid=\(apiKey)&q=\(cityName)"
         performRequest(with: urlString)
     }
     
     func fetchWeather(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
-        let urlString = "\(weatherURL)&lat=\(latitude)&lon=\(longitude)"
+        let urlString = "\(weatherURL)&appid=\(apiKey)&lat=\(latitude)&lon=\(longitude)"
         performRequest(with: urlString)
     }
     
